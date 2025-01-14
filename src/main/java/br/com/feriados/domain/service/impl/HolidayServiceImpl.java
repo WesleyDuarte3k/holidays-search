@@ -9,6 +9,8 @@ import br.com.feriados.infrastructure.database.HolidayRepository;
 import br.com.feriados.infrastructure.exception.InvalidCityException;
 import br.com.feriados.infrastructure.exception.NotFoundCityException;
 import br.com.feriados.infrastructure.exception.NotFoundHolidayException;
+import br.com.feriados.infrastructure.viaCep.Address;
+import br.com.feriados.infrastructure.viaCep.ViaCepClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -23,6 +25,8 @@ public class HolidayServiceImpl implements HolidayService {
 	private HolidayRepository holidayRepository;
 	@Autowired
 	private CityRepository cityRepository;
+	@Autowired
+	private ViaCepClient viaCepClient;
 
 
 	@Override
@@ -39,9 +43,11 @@ public class HolidayServiceImpl implements HolidayService {
 
 	@Override
 	public List<Holiday> findAllByCityName(String cityName) {
+
 		if (Objects.isNull(cityName)) {
 			throw new InvalidCityException();
 		}
+
 
 		City city = cityRepository.findByName(cityName);
 		if (Objects.isNull(city)) {
@@ -95,4 +101,12 @@ public class HolidayServiceImpl implements HolidayService {
 //		}
 //
 //	}
+
+	@Override
+	public List<Holiday> findAllByCep(String cep) {
+		Address address = viaCepClient.getAddress(cep);
+		List<Holiday> holidays = holidayRepository.findAllByCityName(address.getLocalidade());
+
+		return holidays;
+	}
 }
