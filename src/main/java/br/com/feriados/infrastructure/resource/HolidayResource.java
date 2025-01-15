@@ -1,6 +1,7 @@
 package br.com.feriados.infrastructure.resource;
 
 import br.com.feriados.domain.entity.Holiday;
+import br.com.feriados.domain.entity.HolidayType;
 import br.com.feriados.domain.entity.dto.HolidayDTO;
 import br.com.feriados.domain.service.HolidayService;
 import br.com.feriados.infrastructure.database.HolidayRepository;
@@ -93,6 +94,7 @@ public class HolidayResource {
 //
 	public List<HolidayDTO> findCep(String cep) {
 			List<Holiday> holidays = holidayService.findAllByCep(cep);
+
 			List<HolidayDTO> holidaysDTOS = convertHolidays(holidays);
 			return (holidaysDTOS);
 	}
@@ -110,8 +112,13 @@ public class HolidayResource {
 			holidayDTO.setDate(holiday.getDate());
 			holidayDTO.setName(holiday.getName());
 			holidayDTO.setType(holiday.getType().name());
-			holidayDTO.setState(holiday.getState().getName());
+			if (holiday.getType().equals(HolidayType.MUNICIPAL)) {
+				holidayDTO.setCity(holiday.getCity());
+			}
 
+			if (holiday.getType() != HolidayType.NATIONAL) {
+				holidayDTO.setState(holiday.getState().getName());
+			}
 			holidaysDTOS.add(holidayDTO);
 		}
 		return holidaysDTOS;
