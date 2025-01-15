@@ -43,6 +43,8 @@ public class Holiday {
 		this.type = type;
 	}
 
+
+
 	public Long getId() {
 		return id;
 	}
@@ -58,5 +60,14 @@ public class Holiday {
 	public HolidayType getType() {
 		return type;
 	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public State getState() {
+		return state;
+	}
+
 
 }
