@@ -16,4 +16,6 @@ public interface HolidayRepository extends JpaRepository<Holiday, Long> {
 	List<Holiday> findAllByDate(String date);
 
 	List<Holiday> findAllByType(String type);
+
+	List<Holiday> findAllByStateId(Long id);
 }
