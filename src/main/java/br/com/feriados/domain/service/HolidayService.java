@@ -13,15 +13,11 @@ public interface HolidayService {
 
 	public List<Holiday> findAllByCityName(String city);
 
-	public List<Holiday> holidayFilter(String Type);
-
 	public List<Holiday> findAllByDate(String date);
 
 	public List<Holiday> findAllNationalHolidays();
 
 	public List<Holiday> findAllByCep(String cep);
 
-//	public List<Holiday> findAllStateHolidays(String state);
-
-
+	public List<Holiday> findAllbyState(String stateName);
 }
