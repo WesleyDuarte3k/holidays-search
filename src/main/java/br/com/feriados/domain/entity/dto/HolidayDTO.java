@@ -8,6 +8,7 @@ public class HolidayDTO {
 	public String date;
 	public String type;
 	public String state;
+	public String city;
 
 	public HolidayDTO(String name, String date, String type, String state) {
 		this.name = name;
@@ -47,6 +48,7 @@ public class HolidayDTO {
 
 	}
 
-	public void setCity(City city) {
+	public void setCity(String city) {
+		this.city = city;
 	}
 }
