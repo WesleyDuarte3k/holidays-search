@@ -107,6 +107,8 @@ public class HolidayServiceImpl implements HolidayService {
 	public List<Holiday> findAllByCep(String cep) {
 		Address address = viaCepClient.getAddress(cep);
 		List<Holiday> holidays = holidayRepository.findAllByCityName(address.getLocalidade());
+		holidays.addAll(findAllByType(HolidayType.NATIONAL));
+		holidays.addAll(findAllbyState(address.getUf()));
 
 		return holidays;
 	}
