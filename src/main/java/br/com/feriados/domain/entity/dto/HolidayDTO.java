@@ -1,5 +1,6 @@
 package br.com.feriados.domain.entity.dto;
 
+import br.com.feriados.domain.entity.City;
 import br.com.feriados.domain.entity.Holiday;
 
 public class HolidayDTO {
@@ -13,6 +14,12 @@ public class HolidayDTO {
 		this.date = date;
 		this.type = type;
 		this.state = state;
+	}
+
+	public HolidayDTO(String name, String date, String type) {
+		this.name = name;
+		this.date = date;
+		this.type = type;
 	}
 
 
@@ -40,4 +47,6 @@ public class HolidayDTO {
 
 	}
 
+	public void setCity(City city) {
+	}
 }
