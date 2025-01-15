@@ -113,7 +113,7 @@ public class HolidayResource {
 			holidayDTO.setName(holiday.getName());
 			holidayDTO.setType(holiday.getType().name());
 			if (holiday.getType().equals(HolidayType.MUNICIPAL)) {
-				holidayDTO.setCity(holiday.getCity());
+				holidayDTO.setCity(holiday.getCity().getName());
 			}
 
 			if (holiday.getType() != HolidayType.NATIONAL) {
